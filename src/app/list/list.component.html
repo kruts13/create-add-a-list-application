@@ -1,0 +1,32 @@
+<section class="list-title">
+  <div>
+    <div id="hash">
+      <h3 class="list-name">List Name <span class="new-item">{{newItemsNumber}}</span></h3>
+      <div id="add-collapse">
+        <i class="fa fa-plus-square square" (click)="addItems()"></i>
+        <i class="fa fa-caret-down caret" (click)="collapseList()"></i>
+      </div>
+    </div>
+    <p class="total-items">Total {{itemCount}}</p>
+  </div>
+</section>
+<section class="list-names" *ngIf="collapseValue === false">{{checkLatest()}}
+  <ul class="list-type" id="list-all-names">
+    <li class="snippet" *ngFor="let item of foodArray; let i=index">
+      <div class="list-all" *ngIf="i<loadIndex">
+        <img [src]="item[0]" class="snippet-thumbnail" alt="{{item[0]}}" (click)="goTo(item[1])">
+        <div class="list-description" (click)="goTo(item[1])">
+          <h3 class="snippet-title">{{item[1]}}</h3>
+          <p class="snippet-subtitle">{{item[2]}}</p>
+          <p class="snippet-description">{{item[3]}}</p>
+          <p><i class="fa fa-calendar"></i> {{item[4] | date:'fullDate'}}</p>
+        </div>
+        <i class="fa fa-trash trash" (click)="deleteItem(item)"></i>
+      </div>
+      <div id="loadHrLine"><hr *ngIf="i<(loadIndex-1)"></div>
+    </li>
+  </ul>
+  <div class="load-more">
+    <p><button class="load" (click)="loadMoreItems()">Load More</button></p>
+  </div>
+</section>
